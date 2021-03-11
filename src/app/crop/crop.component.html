@@ -1,0 +1,79 @@
+<div class="container-fluid crop-pg p-3">
+  <h4 class="text-center mt-lg-3">Find out the most suitable crop to grow in your farm</h4>
+  <div class="row">
+    <div class="col col-6 mt-lg-3 m-auto">
+      <form [formGroup]="cropForm">
+        <div class="form-group">
+          <label for="nitrogen">Nitrogen</label>
+          <div class="input-group range-slider">
+            <input type="range" #nitrogen class="form-control range-slider__range" formControlName="nitrogen"
+                [ngClass]="{'is-invalid' : submitted && f.nitrogen.errors}"  min="0" max="500" id="nitrogen">
+            <span class="range-slider__value">{{nitrogen.value}}</span>
+            <div *ngIf="submitted && f.nitrogen.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.nitrogen.errors.required">This Field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phosphorous">Phosphorous</label>
+          <div class="input-group range-slider">
+            <input type="range" #phosphorous class="form-control range-slider__range" min="0" max="500"
+                 [ngClass]="{'is-invalid' : submitted && f.phosphorous.errors}"  formControlName="phosphorous" id="phosphorous">
+            <span class="range-slider__value">{{phosphorous.value}}</span>
+            <div *ngIf="submitted && f.phosphorous.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.phosphorous.errors.required">This Field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pottasium">Pottasium</label>
+          <div class="input-group range-slider">
+            <input type="range" #pottasium class="form-control range-slider__range" min="0" max="500"
+                  [ngClass]="{'is-invalid' : submitted && f.pottasium.errors}" formControlName="pottasium" id="pottasium">
+            <span class="range-slider__value">{{pottasium.value}}</span>
+            <div *ngIf="submitted && f.pottasium.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.pottasium.errors.required">This Field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phlevel">ph level</label>
+          <div class="input-group range-slider">
+            <input type="range" #phlevel class="form-control range-slider__range" min="0" max="500"
+                  [ngClass]="{'is-invalid': submitted && f.phlevel.errors}" formControlName="phlevel" id="phlevel">
+            <span class="range-slider__value">{{phlevel.value}}</span>
+            <div *ngIf="submitted && f.phlevel.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.phlevel.errors.required">This Field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rainfall">Rainfall (in mm)</label>
+          <div class="input-group range-slider">
+            <input type="range" #rainfall class="form-control range-slider__range" min="0" max="500"
+                  [ngClass]="{'is-invalid' : submitted && f.rainfall.errors}" formControlName="rainfall" id="rainfall">
+            <span class="range-slider__value">{{rainfall.value}}</span>
+            <div *ngIf="submitted && f.rainfall.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.rainfall.errors.required">This Field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <select class="form-control" formControlName="state" id="state">
+            <option value="">Select State</option>
+            <option [value]="state" *ngFor="let state of statesOfIndia">{{state}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <select class="form-control" formControlName="city" id="city">
+            <option *ngIf="showCity" value="">Select city</option>
+            <option *ngIf="showCity">city</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary text-center" (click)="predict()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

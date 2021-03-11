@@ -1,0 +1,13 @@
+/**{*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+/*  box-sizing: border-box;*/
+/*}*/
+/*.navbar {*/
+/*  background-color: #2f4f4f;*/
+/*}*/
+.navbar{
+  background-color: #cee9ed;
+  box-shadow: 0 0 5px gray;
+  font-weight: bold;
+}
