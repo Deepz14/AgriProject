@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { CropService } from '../crop.service';
 import { statesOfIndia } from '../constants/state-of-india';
 declare var $: any;
 @Component({
@@ -9,7 +10,7 @@ declare var $: any;
   styleUrls: ['./crop.component.css']
 })
 export class CropComponent implements OnInit {
-  constructor(private route: Router) { }
+  constructor(private route: Router, private cropService: CropService) { }
   statesOfIndia = statesOfIndia;
   showCity = false;
   cropForm = new FormGroup({
@@ -44,9 +45,15 @@ export class CropComponent implements OnInit {
       return;
     }
     else {
-      console.log(this.cropForm.value);
       // api call
-      this.route.navigate(['/error']);
+      this.cropService.predictCrop(this.cropForm.getRawValue()).subscribe(data => {
+        console.log(data);
+        if (data !== null) {
+          this.cropService.cropData(data);
+        }
+      }, err => {
+        console.log('Error: ', err);
+      });
     }
   }
 
