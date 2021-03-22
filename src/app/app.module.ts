@@ -11,6 +11,7 @@ import { DiseasesComponent } from './diseases/diseases.component';
 import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

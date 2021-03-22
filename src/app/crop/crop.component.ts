@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CropService } from '../crop.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { statesOfIndia } from '../constants/state-of-india';
 declare var $: any;
 @Component({
@@ -41,7 +42,10 @@ export class CropComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     if (this.f.nitrogen.value === 0 || this.f.phosphorous.value === 0 || this.f.pottasium.value === 0
       || this.f.phlevel.value === 0 || this.f.rainfall.value === 0 || this.f.state.value === '' || this.f.city.value === '') {
-      alert('invalid');
+      Swal.fire({
+        icon: 'warning',
+        text: 'Fields cannot be empty!'
+      });
       return;
     }
     else {
@@ -50,6 +54,10 @@ export class CropComponent implements OnInit {
         console.log(data);
         if (data !== null) {
           this.cropService.cropData(data);
+          Swal.fire({
+            icon: 'success',
+            text: 'crop prediction done'
+          });
         }
       }, err => {
         console.log('Error: ', err);
